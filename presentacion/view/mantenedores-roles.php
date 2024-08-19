@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col mb-2">
-                <div class="card shadow-lg" style="width: 35rem;">
+                <div class="card shadow-lg" style="width: 40rem; border:none;">
                     <div class="card-header bg-unap-green color-white">Gestión de roles
                     </div>
                     <div class="card-body">
@@ -27,7 +27,8 @@
                                 <form id="roleForm">
                                     <div class="row mb-3">
                                         <div class="col-8">
-                                            <input type="text" class="form-control" placeholder="Ingrese el nombre del rol">
+                                            <input type="text" class="form-control"
+                                                placeholder="Ingrese el nombre del rol">
                                         </div>
                                         <div class="col d-flex justify-content-end mx-3">
                                             <button type="button" class="btn btn-primary"
@@ -67,19 +68,21 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <h5>Vistas disponibles</h5>
-                                <ul  id="selectedViews" class="list-group lista-vista">
+                                <ul id="selectedViews" class="list-group lista-vista">
 
                                 </ul>
                             </div>
                             <div class="col-md-2 d-flex align-items-center justify-content-center">
                                 <div class="btn-group-vertical">
-                                <button id="moveToSelected" class="btn btn-primary"><i class="bi bi-arrow-bar-left"></i></button>
-                                    <button id="moveToAvailable" class="btn btn-secondary"><i class="bi bi-arrow-bar-right"></i></button>
+                                    <button id="moveToSelected" class="btn btn-primary"><i
+                                            class="bi bi-arrow-bar-left"></i></button>
+                                    <button id="moveToAvailable" class="btn btn-secondary"><i
+                                            class="bi bi-arrow-bar-right"></i></button>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <h5>Vistas vistas asignadas</h5>
-                                <ul  id="availableViews" class="list-group lista-vista">
+                                <ul id="availableViews" class="list-group lista-vista">
 
                                 </ul>
                             </div>
@@ -99,17 +102,19 @@
 <script>
     function agregarol() {
         Swal.fire({
-            title: "Do you want to save the changes?",
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            title: "Estas seguro de agregar este rol?",
+            icon: "question",
             showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Save",
-            denyButtonText: `Don't save`
+            confirmButtonText: "Agregar",
+            denyButtonText: `Cancelar`,
         }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
+
             if (result.isConfirmed) {
-                Swal.fire("Saved!", "", "success");
-            } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info");
+                Swal.fire("Rol agregado!", "", "success");
             }
         });
     }

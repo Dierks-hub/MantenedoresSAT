@@ -47,12 +47,9 @@
 
 .container {
     height: 100vh;
-    /* Usa el 100% de la altura de la ventana */
     display: flex;
     align-items:center;
-    /* Centra verticalmente */
     justify-content:center;
-    /* Centra horizontalmente */
 
 }
 
@@ -61,18 +58,18 @@
 }
 
 .table-responsive {
-    max-height: 350px; /* Ajusta la altura máxima según sea necesario */
+    max-height: 350px;
     overflow-y: auto;
 }
  
 .table {
-    border-collapse: collapse; /* Asegura que las celdas no tengan espacios entre sí */
+    border-collapse: collapse;
     width: 100%;
 }
  
 .table th, .table td {
-    border: none; /* Elimina los bordes de las celdas */
-    padding: 8px; /* Espaciado interno de las celdas */
+    border: none;
+    padding: 8px;
     word-wrap: break-word;
 }
  

@@ -42,77 +42,17 @@ $(document).ready(function () {
     },
   });
   
- /*      function Cargarvistas(roleId) {
-        $.ajax({
-            url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=7&rol=${roleId}`,
-            dataType: "JSON",
-            type: "GET",
-            success: function (response) {
-              let vistas = response.datosTabla;
-              renderViews(vistas);
-            },
-            error: function () {
-                console.error("Error al obtener las vistas");
-                $(".lista-vista").html('<li class="list-group-item">No se pudieron cargar las vistas. Intente nuevamente más tarde.</li>');
-            }
-        });
-      }
-
-      function renderViews(vistas) {
-        const availableViews = $("#availableViews");
-        const selectedViews = $("#selectedViews");
-
-        availableViews.empty();
-        selectedViews.empty();
-
-        vistas.forEach((vista) => {
-            let listItem = `
-                <li class="list-group-item" data-view-id="${vista.id}">
-                    ${vista.titulo_vista}
-                    <input class="form-check-input float-end" type="checkbox" aria-label="Select view">
-                </li>
-            `;
-
-           
-            if (vista.isSelected) {
-                selectedViews.append(listItem);
-            } else {
-                availableViews.append(listItem);
-            }
-        });
-    }
-
-    $("#moveToSelected").click(function () {
-        $("#availableViews .list-group-item input:checked").each(function () {
-            let listItem = $(this).closest(".list-group-item");
-            $("#selectedViews").append(listItem);
-            $(this).prop('checked', false); 
-        });
-    });
-    $("#moveToAvailable").click(function () {
-        $("#selectedViews .list-group-item input:checked").each(function () {
-            let listItem = $(this).closest(".list-group-item");
-            $("#availableViews").append(listItem);
-            $(this).prop('checked', false); 
-        });
-    });
-
-    $(document).on("click", ".btn-group .btn-primary", function () {
-        let roleId = $(this).data("role-id");
-        Cargarvistas(roleId);
-    }); */
   
-    let cachedRoleViews = {}; // Cache for storing assigned views by role ID
-    let allAvailableViews = []; // Store all available views
+    let cachedRoleViews = {}; 
+    let allAvailableViews = [];
 
-    // Fetch all available views when the page loads
     function fetchAllViews() {
         return $.ajax({
             url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=5&concepto=0011", // API route for fetching all available views
             dataType: "JSON",
             type: "GET",
             success: function (response) {
-                allAvailableViews = response.datosTabla; // Store the fetched views
+                allAvailableViews = response.datosTabla;
             },
             error: function () {
                 console.error("Error al obtener todas las vistas disponibles");
