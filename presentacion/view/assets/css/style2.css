@@ -1,0 +1,130 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/* Color más oscuro */
+.bg-black {
+    background-color: #000000 !important;
+}
+
+.color-black {
+    color: #000000 !important;
+}
+
+.bg-unap-dark {
+    background-color: #44546A !important;
+}
+
+.color-unap-dark {
+    color: #44546A !important;
+}
+
+.bg-unap-blue {
+    background-color: #0069B1 !important;
+}
+
+.color-unap-blue {
+    color: #0069B1 !important;
+}
+
+.bg-unap-green {
+    background-color: #009CA6 !important;
+}
+
+.color-unap-green {
+    color: #009CA6 !important;
+}
+
+/* Color más claro */
+.bg-white {
+    background-color: #FFFFFF !important;
+}
+
+.color-white {
+    color: #FFFFFF !important;
+}
+
+.container {
+    height: 100vh;
+    /* Usa el 100% de la altura de la ventana */
+    display: flex;
+    align-items:center;
+    /* Centra verticalmente */
+    justify-content:center;
+    /* Centra horizontalmente */
+
+}
+
+.card{
+    border-color: #44546A ;
+}
+
+.table-responsive {
+    max-height: 350px; /* Ajusta la altura máxima según sea necesario */
+    overflow-y: auto;
+}
+ 
+.table {
+    border-collapse: collapse; /* Asegura que las celdas no tengan espacios entre sí */
+    width: 100%;
+}
+ 
+.table th, .table td {
+    border: none; /* Elimina los bordes de las celdas */
+    padding: 8px; /* Espaciado interno de las celdas */
+    word-wrap: break-word;
+}
+ 
+.table thead th {
+    background-color: #f2f2f2; /* Color de fondo del encabezado */
+    color: #333; /* Color del texto del encabezado */
+    position: -webkit-sticky; /* Para Safari */
+    position: sticky; /* Mantener el encabezado fijo */
+    top: 0; /* Posicionar el encabezado en la parte superior */
+    z-index: 1; /* Asegura que el encabezado esté encima del contenido */
+}
+ 
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color de fondo de las filas pares */
+}
+ 
+.table tbody tr:hover {
+    background-color: #ddd; /* Color de fondo al pasar el ratón sobre una fila */
+}
+ 
+/* Personaliza el scroll de la tabla */
+.table-responsive::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+ 
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+ 
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+ 
+#gestion-vistas-card{
+    max-width: 500px;
+    margin: auto;
+}
+
+
+@media (max-width: 768px){
+    #gestion-vistas-card{
+        max-width: 90%;
+    }
+}
+@media (max-width: 820px){
+    #gestion-vistas-card{
+        max-width: 500px;
+    }
+}
