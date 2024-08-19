@@ -1,0 +1,1 @@
+para conocer las constantes ejecutar la query llamada obtenerConceptoConstantes
