@@ -10,7 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="style2.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="assets/css/stylerol.css">
 </head>
 
 <body>
@@ -19,14 +20,21 @@
             <div class="col mb-2">
                 <div class="card shadow-lg" style="width: 35rem;">
                     <div class="card-header bg-unap-green color-white">Gestión de roles
-
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <button type="button" class="btn btn-primary mb-2 " data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" id="addRoleBtn">Agregar rol<i
-                                        class="bi bi-file-earmark-plus m-2"></i> </button>
+                                <form id="roleForm">
+                                    <div class="row mb-3">
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" placeholder="Ingrese el nombre del rol">
+                                        </div>
+                                        <div class="col d-flex justify-content-end mx-3">
+                                            <button type="button" class="btn btn-primary"
+                                                onclick="agregarol()">Guardar</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="row">
@@ -39,34 +47,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Datos dinamicos -->
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header bg-unap-green color-white">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar rol</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="roleForm">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Nombre de rol</label>
-                                <input type="text" class="form-control" id="name" placeholder="Ingrese el nombre">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" id="saveChanges">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -76,64 +60,30 @@
                 <div class="modal-content">
                     <div class="modal-header bg-unap-green color-white">
                         <h5 class="modal-title" id="exampleModalLabel">Editar permisos de vistas</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-5">
-                                <h5>Vistas asignadas</h5>
-                                <ul id="availableViews" class="list-group lista-vista">
-                                    <!-- Dynamically generated views -->
+                                <h5>Vistas disponibles</h5>
+                                <ul  id="selectedViews" class="list-group lista-vista">
+
                                 </ul>
                             </div>
                             <div class="col-md-2 d-flex align-items-center justify-content-center">
                                 <div class="btn-group-vertical">
-                                    <button id="moveToSelected" class="btn btn-primary">&gt;&gt;</button>
-                                    <button id="moveToAvailable" class="btn btn-secondary">&lt;&lt;</button>
+                                <button id="moveToSelected" class="btn btn-primary"><i class="bi bi-arrow-bar-left"></i></button>
+                                    <button id="moveToAvailable" class="btn btn-secondary"><i class="bi bi-arrow-bar-right"></i></button>
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <h5>Vistas disponibles</h5>
-                                <ul id="selectedViews" class="list-group lista-vista">
-                                    <!-- Dynamically generated selected views -->
+                                <h5>Vistas vistas asignadas</h5>
+                                <ul  id="availableViews" class="list-group lista-vista">
+
                                 </ul>
                             </div>
                         </div>
-
-                        <!-- <ul class="list-group lista-vista">
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                    Vista 1
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                    Vista 2
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                    Vista 3
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                    Vista 4
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                    Vista 5
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                    Vista 6
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                    Vista 7
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                    Vista 8
-                                </li>
-                            </ul> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -142,27 +92,27 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header bg-unap-green color-white">
-                        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmación de Eliminación</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ¿Está seguro de que desea eliminar este rol?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     </div>
 </body>
-<script src="/get_rol.js"></script>
+<script src="assets/js/get_rol.js"></script>
+<script>
+    function agregarol() {
+        Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire("Saved!", "", "success");
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+            }
+        });
+    }
+</script>
 
 </html>
