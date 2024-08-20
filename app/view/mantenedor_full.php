@@ -115,7 +115,7 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="datos-academicos" role="tabpanel"
                                     aria-labelledby="home-tab" tabindex="0">
-                                    <?php include_once("layouts/datos_academicos.php"); ?>
+                                    <?php include_once("layouts/mantenedor_usuario.php"); ?>
                                 </div>
                                 <div class="tab-pane fade" id="datos-matriculas" role="tabpanel"
                                     aria-labelledby="profile-tab" tabindex="0">
@@ -145,44 +145,6 @@
             trigger: 'hover'
         }));
     </script>
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=4zz',
-                dataType: 'JSON',
-                method: 'GET',
-                success: function (response) {
-                    const usuarios = response.datosTabla;
-                    const tablita = $('.tablita tbody');
-                    let filas = '';
-
-                    // Iterar sobre las entradas del objeto `usuarios` para obtener tanto el RUT como los datos del usuario
-                    Object.entries(usuarios).forEach(([rut, usuario]) => {
-                        const roles = usuario.descroles.length ? usuario.descroles.join(', ') : 'S/R';
-
-                        filas += `
-                    <tr>
-                        <td>${rut}</td>
-                        <td>${usuario.nombres}</td>
-                        <td>${usuario.apellidopaterno}</td>
-                        <td>${usuario.apellidomaterno}</td>
-                        <td>${usuario.fechainicio}</td>
-                        <td>${usuario.fechafin}</td>
-                        <td>${roles}</td>
-                        <td></td>
-                    </tr>
-                `;
-                    });
-
-                    tablita.append(filas); // Añade todas las filas al DOM en una sola operación
-                },
-                error: function (error) {
-                    console.error("Error:", error);
-                },
-            });
-        });
-    </script>
-
 </body>
 
 

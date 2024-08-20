@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include_once("../assets/php/libs_common.php") ?>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Document</title>
-</head>
-
-<body>
     <header>
         <nav id="navbar-main" class="navbar navbar-expand-lg" data-var0="var0"></nav>
     </header>
@@ -50,7 +38,7 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <table class="table table-hover table-striped text-wrap w-100 tablita">
+                                    <table class="table table-hover table-striped text-wrap w-100 tablitau">
                                         <thead>
                                             <tr>
                                                 <th>Usuario</th>
@@ -75,16 +63,15 @@
             </div>
         </div>
     </main>
-</body>
 <script>
     $(document).ready(function() {
         $.ajax({
-            url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=4',
+            url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=usuarios_registrados',
             dataType: 'JSON',
             method: 'GET',
             success: function(response) {
                 const usuarios = response.datosTabla;
-                const tablita = $('.tablita tbody');
+                const tablita = $('.tablitau tbody');
                 let filas = '';
 
 
@@ -98,7 +85,7 @@
                         <td>${usuario.fechainicio}</td>
                         <td>${usuario.fechafin}</td>
                         <td>${usuario.descroles}</td>
-                        <td><i type= "button" class="bi bi-pencil"></i></td>
+                        <td></td>
                     </tr>
                 `;
                 });
@@ -116,5 +103,3 @@
         });
     });
 </script>
-
-</html>
