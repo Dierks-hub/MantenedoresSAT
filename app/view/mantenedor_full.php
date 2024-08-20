@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once("../assets/php/libs_common.php") ?>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -60,30 +61,53 @@
     <!-- Contenido main -->
     <div class="container-fluid">
         <main>
-            <div class="row">
-                <div class="col mt-3 d-flex justify-content-center">
-                    <!-- Sección de botones de gestion de roles y usuarios -->
-                    <div class="card shadow-sm mb-2">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <button type="button" class="btn btn-secondary d-flex align-items-center" onclick="window.location.href='mantenedores_usuarios.php'">
-                                        <span>Registrar usuarios</span>
-                                        <i class="bi bi-person-fill-add p-3"></i>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-secondary d-flex align-items-center" onclick="window.location.href='mantenedores_roles.php'">
-                                        <span>Gestionar roles</span>
-                                        <i class="bi bi-person-vcard-fill p-3"></i>
-                                    </button>
+            <div class="row my-4">
+                <div id="carouselExample" class="carousel carousel-dark slide" data-bs-interval="false">
+                    <div class="carousel-inner">
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <div class="carousel-item active">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-2 mb-2">
+                                        <div class="card shadow-sm hover-effect">
+                                            <div class="card-body d-flex align-items-center stylecard">
+                                                <div class="me-3">
+                                                    <i class="bi bi-book" style="font-size: 1.5rem;"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="card-title mb-1">Registrar usuarios</h6>
+                                                    <p class="mb-0 " style="font-size: 0.875rem;"></p>
+                                                </div>
+                                                <a href="#datos-academicos" id="llamar-datos-academicos"
+                                                    class="stretched-link active" id="datos-academicos-tab"
+                                                    data-bs-toggle="tab" data-bs-target="#datos-academicos"
+                                                    type="button" role="tab" aria-controls="academicos-tab-pane"
+                                                    aria-selected="true"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <div class="card shadow-sm hover-effect">
+                                            <div class="card-body d-flex align-items-center stylecard">
+                                                <div class="me-3">
+                                                    <i class="bi-pencil" style="font-size: 1.5rem;"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="card-title mb-1">Gestionar roles</h6>
+                                                    <p class="mb-0 " style="font-size: 0.875rem;"></p>
+                                                </div>
+                                                <a href="#datos-matriculas" id="llamar-datos-matriculas"
+                                                    class="stretched-link" data-bs-toggle="tab"
+                                                    data-bs-target="#datos-matriculas" type="button" role="tab"
+                                                    aria-controls="matriculas-tab-pane" aria-selected="false"></a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <!-- Sección de Navtools y tabla de datos-->
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card shadow-sm">
@@ -95,34 +119,17 @@
                                 </div>
                                 <div class="tab-pane fade" id="datos-matriculas" role="tabpanel"
                                     aria-labelledby="profile-tab" tabindex="0">
-                                    <?php include_once("layouts/datos_matriculas.php"); ?>
+                                    <?php include_once("layouts/mantenedor_rol.php"); ?>
                                 </div>
                                 <div class="tab-pane fade" id="datos-bienestar" role="tabpanel"
                                     aria-labelledby="contact-tab" tabindex="0">
-                                    <?php include_once("layouts/datos_bienestar.php") ?>
                                 </div>
-                                <div class="tab-pane fade" id="datos-financieros" role="tabpanel"
-                                    aria-labelledby="disabled-tab" tabindex="0">
-                                    <?php include_once("layouts/datos_financieros.php") ?>
-                                </div>
-                                <div class="tab-pane fade" id="datos-admisiones" role="tabpanel"
-                                    aria-labelledby="disabled-tab" tabindex="0">
-                                    <?php include_once("layouts/datos_admision.php") ?>
-                                </div>
-                                <div class="tab-pane fade" id="datos-gestiones" role="tabpanel"
-                                    aria-labelledby="disabled-tab" tabindex="0">f</div>
-                                <div class="tab-pane fade" id="datos-upra" role="tabpanel"
-                                    aria-labelledby="disabled-tab" tabindex="0">g</div>
-                                <div class="tab-pane fade" id="datos-pizarra" role="tabpanel"
-                                    aria-labelledby="disabled-tab" tabindex="0">h</div>
-                                <div class="tab-pane fade" id="datos-pace" role="tabpanel"
-                                    aria-labelledby="disabled-tab" tabindex="0">i</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- Sección de Navtools y tabla de datos-->
         </main>
         <!-- Footer contenido -->
         <footer></footer>
@@ -138,6 +145,45 @@
             trigger: 'hover'
         }));
     </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=4zz',
+                dataType: 'JSON',
+                method: 'GET',
+                success: function (response) {
+                    const usuarios = response.datosTabla;
+                    const tablita = $('.tablita tbody');
+                    let filas = '';
+
+                    // Iterar sobre las entradas del objeto `usuarios` para obtener tanto el RUT como los datos del usuario
+                    Object.entries(usuarios).forEach(([rut, usuario]) => {
+                        const roles = usuario.descroles.length ? usuario.descroles.join(', ') : 'S/R';
+
+                        filas += `
+                    <tr>
+                        <td>${rut}</td>
+                        <td>${usuario.nombres}</td>
+                        <td>${usuario.apellidopaterno}</td>
+                        <td>${usuario.apellidomaterno}</td>
+                        <td>${usuario.fechainicio}</td>
+                        <td>${usuario.fechafin}</td>
+                        <td>${roles}</td>
+                        <td></td>
+                    </tr>
+                `;
+                    });
+
+                    tablita.append(filas); // Añade todas las filas al DOM en una sola operación
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                },
+            });
+        });
+    </script>
+
 </body>
+
 
 </html>

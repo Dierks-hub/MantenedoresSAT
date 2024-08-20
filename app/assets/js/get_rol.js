@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $.ajax({
-    url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=5&concepto=0012",
+    url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=ver_subconcepto&concepto=0012",
     dataType: "JSON",
     type: "GET",
   
@@ -10,7 +10,7 @@ $(document).ready(function () {
   
       roles.forEach((rol) => {
 
-        let rolesWithoutEdit = ["administrador", "admision", "aranceles y cobranzas"];
+        let rolesWithoutEdit = [/* "administrador", */ "admision", "aranceles y cobranzas"];
         let shouldHideEditButton = rolesWithoutEdit.includes(rol.descripcion_concepto.toLowerCase());
   
         let fila = `
@@ -42,14 +42,12 @@ $(document).ready(function () {
     },
   });
   
-  
     let cachedRoleViews = {}; 
     let allAvailableViews = [];
 
     function fetchAllViews() {
         return $.ajax({
-            url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=5&concepto=0011", // API route for fetching all available views
-            dataType: "JSON",
+            url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=ver_subconcepto&concepto=0011",
             type: "GET",
             success: function (response) {
                 allAvailableViews = response.datosTabla;
@@ -62,20 +60,18 @@ $(document).ready(function () {
 
     function loadRoleViews(roleId) {
         if (cachedRoleViews[roleId]) {
-            
             renderRoleViews(cachedRoleViews[roleId]);
+
         } else {
             showLoadingState();
             $.ajax({
-                url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=7&rol=${roleId}`, // API route for fetching views assigned to a role
+                url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=vistasxrol&rol=${roleId}`, // API route for fetching views assigned to a role
                 dataType: "JSON",
                 type: "GET",
                 success: function (response) {
-                    let roleViews = response.datosTabla;
 
-                    
+                    let roleViews = response.datosTabla[roleId];
                     cachedRoleViews[roleId] = roleViews;
-
                     renderRoleViews(roleViews);
                 },
                 error: function () {
@@ -93,20 +89,19 @@ $(document).ready(function () {
         availableViews.empty();
         selectedViews.empty();
 
-        
         const assignedViewIds = new Set(roleViews.map(v => v.codigo_concepto));
-
+        console.log(roleViews);
         
         allAvailableViews.forEach((view) => {
+
             let listItem = `
                 <li class="list-group-item" data-view-id="${view.codigo_concepto}">
                     ${view.descripcion_concepto}
                     <input class="form-check-input float-end" type="checkbox" aria-label="Select view">
                 </li>
             `;
-
             if (assignedViewIds.has(view.codigo_concepto)) {
-                selectedViews.append(listItem); 
+                selectedViews.append(listItem);
             } else {
                 availableViews.append(listItem); 
             }
@@ -115,7 +110,7 @@ $(document).ready(function () {
 
     function showLoadingState() {
         $("#availableViews").html('<li class="list-group-item">Cargando vistas...</li>');
-        $("#selectedViews").empty(); 
+        $("#selectedViews").html('<li class="list-group-item">Cargando vistas...</li>');
     }
 
     function showErrorState() {

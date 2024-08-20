@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="assets/css/stylerol.css">
+    <link rel="stylesheet" href="../assets/css/stylerol.css">
 </head>
 
 <body>
@@ -26,13 +26,15 @@
                             <div class="col">
                                 <form id="roleForm">
                                     <div class="row mb-3">
-                                        <div class="col-8">
+                                        <div class="col-6">
                                             <input type="text" class="form-control"
                                                 placeholder="Ingrese el nombre del rol">
                                         </div>
                                         <div class="col d-flex justify-content-end mx-3">
-                                            <button type="button" class="btn btn-primary"
+                                            <button type="button" class="btn btn-primary mx-2"
                                                 onclick="agregarol()">Guardar</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                onclick="window.location.href='mantenedor_full.php'">Cancelar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -96,9 +98,8 @@
             </div>
         </div>
     </div>
-    </div>
 </body>
-<script src="assets/js/get_rol.js"></script>
+<script src="../assets/js/get_rol.js"></script>
 <script>
     function agregarol() {
         Swal.fire({
@@ -112,7 +113,6 @@
             confirmButtonText: "Agregar",
             denyButtonText: `Cancelar`,
         }).then((result) => {
-
             if (result.isConfirmed) {
                 Swal.fire("Rol agregado!", "", "success");
             }

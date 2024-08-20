@@ -69,3 +69,61 @@ body{
     border-radius: 5px; /* Cambia el radio del borde al hacer hover */
 
 }
+
+.table-responsive {
+    max-height: 350px;
+    overflow-y: auto;
+}
+ 
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+ 
+.table th, .table td {
+    border: none;
+    padding: 8px;
+    word-wrap: break-word;
+}
+ 
+.table thead th {
+    background-color: #f2f2f2; /* Color de fondo del encabezado */
+    color: #333; /* Color del texto del encabezado */
+    position: -webkit-sticky; /* Para Safari */
+    position: sticky; /* Mantener el encabezado fijo */
+    top: 0; /* Posicionar el encabezado en la parte superior */
+    z-index: 1; /* Asegura que el encabezado esté encima del contenido */
+}
+ 
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color de fondo de las filas pares */
+}
+ 
+.table tbody tr:hover {
+    background-color: #ddd; /* Color de fondo al pasar el ratón sobre una fila */
+}
+ 
+/* Personaliza el scroll de la tabla */
+.table-responsive::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+ 
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+ 
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+ 
+#gestion-vistas-card{
+    max-width: 500px;
+    margin: auto;
+}
+

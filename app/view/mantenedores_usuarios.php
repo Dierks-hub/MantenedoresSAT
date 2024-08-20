@@ -72,7 +72,7 @@
                         <div class="row mt-4">
                             <div class="col-12 col-lg-6 d-flex justify-content-start">
                                 <button class="btn btn-primary me-2">Añadir Usuario</button>
-                                <button class="btn btn-outline-danger">Cancelar</button>
+                                <button class="btn btn-outline-danger" onclick="window.location.href='mantenedor_full.php'">Cancelar</button>
                             </div>
                             <div class="col-12 col-lg-6 d-flex justify-content-lg-end justify-content-start mt-3 mt-lg-0">
                                 <button id="agregar-rol" class="btn btn-primary me-2" type="button">Asignar Rol</button>
