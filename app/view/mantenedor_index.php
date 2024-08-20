@@ -87,7 +87,6 @@
                 const tablita = $('.tablita tbody');
                 let filas = '';
 
-
                 usuarios.forEach(usuario => {
                     filas += `
                     <tr>
