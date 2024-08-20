@@ -23,24 +23,50 @@
                         <div class="col"></div>
                     </div>
                     <!-- Aca se cargara la tabla con los datos del usuario -->
-                    <div class="row">
-                        <div class="col">
-                            <table class="table table-striped text-wrap w-100 tablita">
-                                <thead>
-                                    <tr>
-                                        <th>Usuario</th>
-                                        <th>Rut</th>
-                                        <th>Apellido paterno</th>
-                                        <th>Apellido Materno</th>
-                                        <th>Fecha Inicio</th>
-                                        <th>Fecha Termino</th>
-                                        <th>Roles</th>
-                                        <th></th>
-
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+                    <div class="card">
+                        <div class="card-header bg-primary">
+                            <h6 class="text-wrap text-light mt-2">Tabla Usuarios</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mb-3 d-flex justify-content-center">
+                                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                        <div class="btn-group me-2" role="group" aria-label="First group">
+                                            <button type="button" class="btn btn-primary">1</button>
+                                            <button type="button" class="btn btn-primary">2</button>
+                                            <button type="button" class="btn btn-primary">3</button>
+                                            <button type="button" class="btn btn-primary">4</button>
+                                        </div>
+                                        <div class="btn-group me-2" role="group" aria-label="Second group">
+                                            <button type="button" class="btn btn-secondary">5</button>
+                                            <button type="button" class="btn btn-secondary">6</button>
+                                            <button type="button" class="btn btn-secondary">7</button>
+                                        </div>
+                                        <div class="btn-group" role="group" aria-label="Third group">
+                                            <button type="button" class="btn btn-info">8</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <table class="table table-hover table-striped text-wrap w-100 tablita">
+                                        <thead>
+                                            <tr>
+                                                <th>Usuario</th>
+                                                <th>Rut</th>
+                                                <th>Apellido paterno</th>
+                                                <th>Apellido Materno</th>
+                                                <th>Fecha Inicio</th>
+                                                <th>Fecha Termino</th>
+                                                <th>Roles</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -61,23 +87,26 @@
                 const tablita = $('.tablita tbody');
                 let filas = '';
 
-                // Iterar sobre las entradas del objeto `usuarios` para obtener tanto el RUT como los datos del usuario
-                Object.entries(usuarios).forEach(([rut, usuario]) => {
-                    const roles = usuario.descroles.length ? usuario.descroles.join(', ') : 'S/R';
 
+                usuarios.forEach(usuario => {
                     filas += `
                     <tr>
+                        <td>${usuario.run}</td>
                         <td>${usuario.nombres}</td>
-                        <td>${rut}</td>
                         <td>${usuario.apellidopaterno}</td>
                         <td>${usuario.apellidomaterno}</td>
                         <td>${usuario.fechainicio}</td>
                         <td>${usuario.fechafin}</td>
-                        <td>${roles}</td>
+                        <td>${usuario.descroles}</td>
                         <td></td>
                     </tr>
                 `;
                 });
+                // Object.entries(usuarios).forEach(([rut, usuario]) => {
+                //     const roles = usuario.descroles.length ? usuario.descroles.join(', ') : 'S/R';
+
+
+                // });
 
                 tablita.append(filas); // Añade todas las filas al DOM en una sola operación
             },

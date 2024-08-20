@@ -4,50 +4,27 @@ function obtenerRolesSeleccionados() {
 
 $("#seleccionar-vistas").on("click", function () {
   let rolesSeleccionados = obtenerRolesSeleccionados();
+  let rolesArray = rolesSeleccionados.map((role) => role.codigo).join(",");
+
   $.ajax({
-    url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=5&concepto=0011",
+    url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=7&rol=${rolesArray}`,
     method: "GET",
     dataType: "JSON",
     success: function (response) {
-      console.log(response);
-      let vistas = response.datosTabla;
-      let contenido = "";
-
-      vistas.forEach((vista) => {
-        let checked = rolesSeleccionados.some(
-          (role) => role.codigo === vista.codigo_concepto
-        );
-        let disabled = checked ? "disabled" : "";
-
-        contenido += `
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="vista${
-                  vista.codigo_concepto
-                }" ${checked ? "checked" : ""} ${disabled}>
-                 <label class="form-check-label" for="vista${
-                   vista.codigo_concepto
-                 }">${vista.descripcion_concepto}</label>
-            </div>                           
-                `;
-      });
-
-      $("#vistas-card-body").html(contenido);
-      $("#contenedor-vistas").removeClass("d-none").addClass("d-block"); // Mostrar la card
-      $("#contenedor-formulario")
-        .removeClass("col-md-7 col-lg-6")
-        .addClass("col-md-12 col-lg-8"); // Ajustar la columna del formulario
+      console.log("Vistas asociadas a los roles seleccionados:", response);
     },
     error: function () {
-      alert("Datos no obtenidos");
+      alert("Error al obtener las vistas asociadas a los roles seleccionados.");
     },
   });
 });
+
 // Ocultar la card de roles
 $("#ocultar-card-vistas").on("click", function () {
-  $("#contenedor-vistas").removeClass("d-block").addClass("d-none"); // Ocultar la card
+  $("#contenedor-vistas").removeClass("d-block").addClass("d-none");
   $("#contenedor-formulario")
     .removeClass("col-md-12 col-lg-8")
-    .addClass("col-md-7 col-lg-6"); // Expandir el formulario
+    .addClass("col-md-7 col-lg-6");
 });
 
 $("#guardar-vistas").on("click", function () {
