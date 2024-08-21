@@ -22,7 +22,7 @@
                 </div>
                 <div class="row">
                     <div class="col table-responsive">
-                        <table class="table tablita2">
+                        <table class="table" id="miTabla">
                             <thead>
                                 <tr>
                                     <th>Rol</th>
@@ -42,7 +42,7 @@
         <div class="modal-dialog modal-dialog-centered  modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-unap-green color-white">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar permisos de vistas</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:white;">Editar permisos de vistas</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>

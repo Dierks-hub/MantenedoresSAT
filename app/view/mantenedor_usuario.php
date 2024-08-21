@@ -148,7 +148,6 @@
             <!-- Footer contenido -->
             <footer></footer>
         </div>
-
     </main>
 </body>
 <script defer src="assets/js//datatable.js"></script>
