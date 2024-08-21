@@ -12,7 +12,7 @@
 <body>
     <!-- Offcanvas -->
     <?php include_once("layouts/components/sidebar.php"); ?>
-    <!-- Header --> 
+    <!-- Header -->
     <header>
         <nav class="navbar navbar-expand-lg nav-main">
             <div class="d-flex justify-content-between align-items-center w-100">
@@ -21,7 +21,6 @@
                     <i type="button" class="bi bi-layout-sidebar-inset p-3 icono-style" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"></i>
                 </div>
-
                 <!-- Sección central con la imagen y el perfil -->
                 <div class="d-flex align-items-center px-3">
                     <!-- Sección de íconos a la derecha -->
@@ -147,4 +146,5 @@
         }));
     </script>
 </body>
+
 </html>

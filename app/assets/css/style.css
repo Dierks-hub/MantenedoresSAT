@@ -51,7 +51,9 @@
 body{
     padding-bottom: 50px;
     font-family: var(--primary-font);
-    background: var(--body-color);
+    background: var(--body-color);    
+    background: #F8F8FF;
+
 }
 .nav-main{
     font-size: 15px;
@@ -199,3 +201,5 @@ margin-top: 40vh;
 .selected {
     background-color: #d1e7dd; 
 }
+
+
