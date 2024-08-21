@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-12 col-md-12 col-lg-12">
+                <div class="col-12 col-md-10 col-lg-11">
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="datos-academicos" role="tabpanel"
                             aria-labelledby="home-tab" tabindex="0">
@@ -133,6 +133,7 @@
                                                         <th class="text-start">Fecha Inicio</th>
                                                         <th class="text-start">Fecha Termino</th>
                                                         <th class="text-start">Roles</th>
+                                                        <th class="text-start"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody></tbody>
@@ -208,6 +209,11 @@
             },
             {
                 data: 'descroles'
+            },
+            {
+                "render": function() {
+                    return '<button type="button" id="ButtonEditar" class="editar edit-modal btn btn-outline-secondary botonEditar><i class="fa-thin fa-pen-to-square"></i></button>';
+                }
             },
 
         ],
