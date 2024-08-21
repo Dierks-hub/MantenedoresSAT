@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col table-responsive">
+                                        <div class="col">
                                             <table
                                                 id="tabla-usuario" class="table table-hover table-striped text-wrap w-100">
                                                 <thead>
@@ -153,56 +153,35 @@
 </body>
 <script defer src="assets/js//datatable.js"></script>
 <script defer src="assets/js//get_rol.js"></script>
-<!-- <script>
-    $(document).ready(function() {
-        $.ajax({
-            url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=usuarios_registrados',
-            dataType: 'JSON',
-            method: 'GET',
-            success: function(response) {
-                const usuarios = response.datosTabla;
-                const tablita = $('.tablita tbody');
-                let filas = '';
-                let espacio =
-
-                    usuarios.forEach(usuario => {
-                        filas += `
-                    <tr>
-                        <td>${usuario.run}</td>
-                        <td>${usuario.nombres}${usuario.apellidopaterno}${usuario.apellidomaterno}</td>
-                        <td>${usuario.fechainicio}</td>
-                        <td>${usuario.fechafin}</td>
-                        <td>${usuario.descroles}</td>
-                        <td><i type="button" class="bi bi-pen btn-primary modificar-usuario"></i></td>
-                    </tr>
-                `;
-                    });
-
-
-                tablita.append(filas);
-            },
-            error: function(error) {
-                console.error("Error:", error);
-            },
-        });
-    });
-</script> -->
 <script>
     new DataTable("#tabla-usuario", {
         layout: {
-            topStart: "buttons",
+            topStart: ['pageLength', "buttons"],
+            topEnd: 'search'
         },
-        dom: "Bfrtip",
         buttons: [{
-            extend: "copy",
-            className: "btn-primary",
-            text: '<i class="bi bi-clipboard"></i>',
-        }, ],
-        bottomEnd: {
-            paging: {
-                firstLast: false,
+                extend: "copy",
+                text: '<i class="bi bi-clipboard"></i>',
             },
-        },
+            {
+                extend: 'pdf',
+                text: '<i class="bi bi-file-earmark-pdf"></i>',
+                exportOptions: {
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            },
+            {
+                extend: 'excel',
+                text: '<i class="bi bi-file-earmark-excel"></i>',
+                exportOptions: {
+                    modifier: {
+                        page: 'current'
+                    }
+                },
+            },
+        ],
         ajax: {
             url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=usuarios_registrados',
             method: 'POST',
@@ -224,14 +203,16 @@
             {
                 data: 'descroles'
             },
-
         ],
-
         searching: true,
         ordering: true,
         language: {
             url: "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
         },
+        paging: true,
+        scrollCollapse: false,
+        scrollY: true,
+        responsive: true
     });
 </script>
 
