@@ -1,6 +1,9 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="card" style="border:none;">
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h6 class="text-wrap text-light mt-2">Tabla roles</h6>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col">
@@ -9,8 +12,8 @@
                                 <div class="col-6">
                                     <input type="text" class="form-control" placeholder="Ingrese el nombre del rol">
                                 </div>
-                                <div class="col d-flex justify-content-end mx-3">
-                                    <button type="button" class="btn btn-primary mx-2"
+                                <div class="col d-flex justify-content-end ">
+                                    <button type="button" class="btn btn-primary"
                                         onclick="agregarol()">Guardar</button>
                                 </div>
                             </div>
@@ -19,7 +22,7 @@
                 </div>
                 <div class="row">
                     <div class="col table-responsive">
-                        <table class="table tablita">
+                        <table class="table tablita2">
                             <thead>
                                 <tr>
                                     <th>Rol</th>

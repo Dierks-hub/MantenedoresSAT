@@ -91,7 +91,6 @@ body{
 .stylecard{
     height: 130px;
     max-height: 130px;
-    min-width: 30px;
 }
 .stylecard:hover{
     background-color: #0069B1; /* Color del hover */
