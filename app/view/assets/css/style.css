@@ -1,8 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
+/* Color más oscuro */
+.bg-black {
+    background-color: #000000 !important;
+}
+
+.color-black {
+    color: #000000 !important;
+}
+
+.bg-unap-dark {
+    background-color: #44546A !important;
+}
+
+.color-unap-dark {
+    color: #44546A !important;
+}
+
+.bg-unap-blue {
+    background-color: #0069B1 !important;
+}
+
+.color-unap-blue {
+    color: #0069B1 !important;
+}
+
+.bg-unap-green {
+    background-color: #009CA6 !important;
+}
+
+.color-unap-green {
+    color: #009CA6 !important;
+}
 
 :root{
-
     --primary-font:"Nunito Sans", sans-serif;
     --primary-color: #0069b1;
     --secondary-color: #44546A;

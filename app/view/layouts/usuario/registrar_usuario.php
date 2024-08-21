@@ -10,13 +10,12 @@
 </head>
 
 <body>
-
     <div class="container-fluid mt-4">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6 col-lg-5 mb-2">
+            <div class="col-12 col-md-6 col-lg-5 mb-2 h-25%">
                 <div class="card shadow">
                     <div class="card-header bg-primary">
-                        <h5 class="mt-2 text-light">Modificar Usuario</h5>
+                        <h5 class="mt-2 text-light">Registrar Usuario</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -68,20 +67,20 @@
                         <div class="row mt-4">
                             <label class="form-label">Roles del usuario:</label>
                             <div id="contenedor-badge" class="col">
-                                <!-- Badges for roles -->
+
                             </div>
                         </div>
-                        <div class="row mt-4 d-flex justify-content-between">
-                            <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                        <div class="row mt-4 d-flex">
+                            <div class="col-12 col-lg-6 mt-3 mt-lg-0 mb-2">
                                 <button id="agregar-rol" class="btn btn-outline-secondary btn-sm me-2" type="button">
                                     <i class="fas fa-user-plus"></i> Asignar Rol
                                 </button> <button id="seleccionar-vistas" class="btn btn-outline-secondary btn-sm" type="button">
                                     <i class="fas fa-edit"></i> Editar Vistas
                                 </button>
                             </div>
-                            <div class="col-12 col-lg-6">
+                            <div class="col-12 col-lg-6 ">
                                 <button class="btn btn-outline-danger btn-sm me-2">Cancelar</button>
-                                <button class="btn btn-primary btn-sm">Añadir Usuario</button>
+                                <button class="btn btn-primary btn-sm" id="añadir-usuario">Añadir Usuario</button>
                             </div>
                         </div>
                     </div>
@@ -122,23 +121,47 @@
     <script src="../assets/js/agregar_rol.js"></script>
     <script src="../assets/js/manejar_vista.js"></script>
     <script src="../assets/js/select_user.js"></script>
+    <script defer src="../assets/js/general.js"></script>
+
     <script>
-        // Inicializamos el flatpickr para la fecha de inicio
         let fechaInicio = $("#date-init").flatpickr({
-            minDate: "today", // La fecha mínima es hoy
+            minDate: "today",
             dateFormat: "d-m-Y",
             onChange: function(selectedDates, dateStr, instance) {
-                // Cuando se selecciona una fecha de inicio, actualizamos minDate en #date-finish
                 fechaTermino.set('minDate', dateStr);
             }
         });
 
-        // Inicializamos el flatpickr para la fecha de término
         let fechaTermino = $("#date-finish").flatpickr({
             dateFormat: "d-m-Y",
-            // minDate no se establece hasta que se seleccione una fecha de inicio
         });
     </script>
+    <script>
+        $("#añadir-usuario").on('click', function() {
+            ShowLoader()
+            let run = $("#select-user").val();
+            let fechaini = $("#date-init").val();
+            let fechafin = $("#date-finish").val();
+            let nombent = "";
+
+
+
+            let rolesSeleccionados = JSON.parse(sessionStorage.getItem("rolesSeleccionados")) || [];
+            let codrol = rolesSeleccionados.length > 0 ? rolesSeleccionados.map(role => role.codigo).join(",") : undefined;
+            $.ajax({
+                url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=modificar_usuarios&run=${run}&nombent=${''}&codrol=${codrol}&fechaini=${fechaini}&fechafin=${fechafin}`,
+                method: "POST",
+                success: function(response) {
+                    console.log("Usuario modificado exitosamente:", response);
+                },
+                error: function(error) {
+                    console.error("Error al modificar usuario:", error);
+                },
+            });
+            HideLoader()
+        });
+    </script>
+
 </body>
 
 </html>
