@@ -99,6 +99,7 @@
         </div>
     </main>
 </body>
+<script defer src="assets/js//datatable.js"></script>
 <script>
     $(document).ready(function() {
         $.ajax({

@@ -1,4 +1,4 @@
-new DataTable("#tabla-basic", {
+new DataTable(".tablita", {
   layout: {
     topStart: "buttons",
   },
