@@ -1,6 +1,7 @@
 $(document).ready(function () {
     ShowLoader();
     $('#miTabla').DataTable({
+        "ordering":false,
         "searching":false,
         "lengthChange": false,
         "language": {
@@ -26,7 +27,7 @@ $(document).ready(function () {
                         ? ""
                         : `
                             <div class="btn-group ">
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalEdit" data-role-id="${row.codigo_concepto}">
+                                <button class="btn btn-primary btn-sm d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#ModalEdit" data-role-id="${row.codigo_concepto}">
                                     <i class="bi bi-pen"></i>
                                 </button>
                             </div>
@@ -48,6 +49,7 @@ $(document).ready(function () {
     let allAvailableViews = [];
   
     function fetchAllViews() {
+        ShowLoader();
         return $.ajax({
           url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=ver_subconcepto&concepto=0011",
           type: "GET",
@@ -56,17 +58,22 @@ $(document).ready(function () {
             console.log(
               "Vistas disponibles (allAvailableViews):",
               allAvailableViews
-            );
+            ); // Depuración
+            HideLoader();
           },
           error: function () {
             console.error("Error al obtener todas las vistas disponibles");
+            HideLoader();
           },
         });
       }
     
       function loadRoleViews(roleId) {
-          ShowLoader(); 
-          showLoadingState();
+        if (cachedRoleViews[roleId]) {
+          renderRoleViews(cachedRoleViews[roleId]);
+        } else {
+            ShowLoader();
+            showLoadingState();
           $.ajax({
             url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=vistasxrol&rol=${roleId}`, // API route for fetching views assigned to a role
             dataType: "JSON",
@@ -102,6 +109,7 @@ $(document).ready(function () {
                 HideLoader();
             },
           });
+        }
       }
     
       function renderRoleViews(roleViews) {

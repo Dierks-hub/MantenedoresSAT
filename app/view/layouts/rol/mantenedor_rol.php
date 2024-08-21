@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col">
+<div class="row" >
+    <div class="col d-flex justify-content-center">
         <div class="card">
             <div class="card-header bg-primary">
                 <h6 class="text-wrap text-light mt-2">Tabla roles</h6>
@@ -22,11 +22,11 @@
                 </div>
                 <div class="row">
                     <div class="col table-responsive">
-                        <table class="table" id="miTabla">
+                        <table class="table table-hover table-striped text-wrap" id="miTabla" >
                             <thead>
                                 <tr>
-                                    <th>Rol</th>
-                                    <th>Acciones</th>
+                                    <th class="col-10 ">Rol</th>
+                                    <th class="col-3">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <h5>Vistas vistas asignadas</h5>
+                            <h5>Vistas asignadas</h5>
                             <ul id="availableViews" class="list-group lista-vista">
 
                             </ul>
