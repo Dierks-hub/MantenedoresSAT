@@ -2,7 +2,6 @@ new DataTable(".tablita", {
   layout: {
     topStart: "buttons",
   },
-
   dom: "Bfrtip",
   buttons: [
     {
@@ -16,6 +15,7 @@ new DataTable(".tablita", {
       firstLast: false,
     },
   },
+  ajax: "",
   searching: true,
   ordering: true,
   language: {

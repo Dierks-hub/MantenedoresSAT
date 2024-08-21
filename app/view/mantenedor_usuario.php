@@ -73,13 +73,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col table-responsive">
-                                    <table class="table table-hover table-striped text-wrap w-100 tablita">
+                                    <table id="tabla-usuario" class="table table-hover table-striped text-wrap w-100 tablita">
                                         <thead>
                                             <tr>
-                                                <th>Usuario</th>
                                                 <th>Rut</th>
-                                                <th>Apellido paterno</th>
-                                                <th>Apellido Materno</th>
+                                                <th>Usuario</th>
                                                 <th>Fecha Inicio</th>
                                                 <th>Fecha Termino</th>
                                                 <th>Roles</th>
@@ -99,7 +97,7 @@
         </div>
     </main>
 </body>
-<script defer src="assets/js//datatable.js"></script>
+<!-- <script src="assets/js//datatable.js"></script> -->
 <script>
     $(document).ready(function() {
         $.ajax({
@@ -110,21 +108,20 @@
                 const usuarios = response.datosTabla;
                 const tablita = $('.tablita tbody');
                 let filas = '';
+                let espacio =
 
-                usuarios.forEach(usuario => {
-                    filas += `
+                    usuarios.forEach(usuario => {
+                        filas += `
                     <tr>
                         <td>${usuario.run}</td>
-                        <td>${usuario.nombres}</td>
-                        <td>${usuario.apellidopaterno}</td>
-                        <td>${usuario.apellidomaterno}</td>
+                        <td>${usuario.nombres}${usuario.apellidopaterno}${usuario.apellidomaterno}</td>
                         <td>${usuario.fechainicio}</td>
                         <td>${usuario.fechafin}</td>
                         <td>${usuario.descroles}</td>
                         <td><i type="button" class="bi bi-pen btn-primary modificar-usuario"></i></td>
                     </tr>
                 `;
-                });
+                    });
                 // Object.entries(usuarios).forEach(([rut, usuario]) => {
                 //     const roles = usuario.descroles.length ? usuario.descroles.join(', ') : 'S/R';
                 // });
@@ -137,5 +134,6 @@
         });
     });
 </script>
+
 
 </html>
