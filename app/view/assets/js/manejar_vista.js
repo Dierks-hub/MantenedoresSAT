@@ -11,7 +11,7 @@ $("#seleccionar-vistas").on("click", function () {
     method: "POST",
     dataType: "JSON",
     data: {
-      caso: 7,
+      caso: vistasxrol,
       rol: rolesArray,
     },
     success: function (response) {

@@ -1,9 +1,7 @@
-// Formatear el nombre completo del usuario
 var formatFullName = function (item) {
   return `${item.nombres} ${item.apellidopaterno}`;
 };
 
-// Inicializar Tom Select
 new TomSelect("#select-user", {
   maxOptions: 5,
   persist: false,
@@ -11,13 +9,11 @@ new TomSelect("#select-user", {
   valueField: "run",
   labelField: "run",
   searchField: ["run", "nombres", "apellidopaterno", "apellidomaterno"],
-  options: [], // Puedes dejar vacío o cargarlo dinámicamente
+  options: [],
   render: {
-    // Renderizar el valor seleccionado (solo mostrar el RUN)
     item: function (item, escape) {
       return `<div>${escape(item.run)}</div>`;
     },
-    // Renderizar las opciones en el dropdown
     option: function (item, escape) {
       return `<div>
                 <span class="name">${escape(formatFullName(item))}</span>
@@ -25,14 +21,12 @@ new TomSelect("#select-user", {
               </div>`;
     },
   },
-  create: false, // Si no quieres permitir la creación de nuevas opciones
+  create: false,
   sortField: {
     field: "run",
     direction: "asc",
   },
 });
-ShowLoader();
-// Cargar datos mediante AJAX
 $.ajax({
   url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=buscar_funcionarios",
   dataType: "JSON",
@@ -45,16 +39,13 @@ $.ajax({
       selectUser.addOption(item);
     });
 
-    // Almacenar los datos para futuras búsquedas
     usuariosData = datos;
   },
   error: function () {
     console.error("Error al obtener los datos.");
   },
-});
+}); 
 
-// Manejar el cambio de selección
-ShowLoader();
 $("#select-user").on("change", function () {
   let selectedValue = $(this).val();
   let usuarioSeleccionado = usuariosData.find(function (user) {
@@ -66,5 +57,4 @@ $("#select-user").on("change", function () {
     $("#apellidoPaterno").val(usuarioSeleccionado.apellidopaterno);
     $("#apellidoMaterno").val(usuarioSeleccionado.apellidomaterno);
   }
-  HideLoader();
 });

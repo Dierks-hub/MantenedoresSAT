@@ -12,8 +12,8 @@
 <body>
     <div class="container-fluid mt-4">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6 col-lg-5 mb-2 h-25%">
-                <div class="card shadow">
+            <div class="col-12 col-md-6 col-lg-5 mb-2">
+                <div class="card shadow h-auto">
                     <div class="card-header bg-primary">
                         <h5 class="mt-2 text-light">Registrar Usuario</h5>
                     </div>
@@ -87,12 +87,12 @@
                 </div>
             </div>
             <div class="col-12 col-md-3 col-lg-3 d-none mb-2" id="contenedor-roles">
-                <div class="card shadow">
+                <div class="card shadow h-auto">
                     <div class="card-header bg-primary text-light d-flex justify-content-between">
                         <h5 class="mt-2">Asignar Roles</h5>
                         <button type="button" class="btn-close btn-close-white mt-2" id="ocultar-card"></button>
                     </div>
-                    <div class="card-body" id="roles-card-body">
+                    <div class="card-body" id="roles-card-body" style="overflow-y:auto">
                         <!-- Los roles se cargarán aquí -->
                     </div>
                     <div class="card-footer text-end">
@@ -101,12 +101,12 @@
                 </div>
             </div>
             <div class="col-12 col-md-3 col-lg-3 d-none mb-2" id="contenedor-vistas">
-                <div class="card shadow">
+                <div class="card shadow h-auto">
                     <div class="card-header bg-primary text-light d-flex justify-content-between">
                         <h5 class="mt-2">Asignar Vistas</h5>
                         <button type="button" class="btn-close btn-close-white mt-2" id="ocultar-card-vistas"></button>
                     </div>
-                    <div class="card-body" id="vistas-card-body">
+                    <div class="card-body" id="vistas-card-body" style="overflow-y:auto">
                         <!-- Las vistas se cargarán aquí -->
                     </div>
                     <div class="card-footer text-end">

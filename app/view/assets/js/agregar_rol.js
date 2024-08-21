@@ -71,10 +71,7 @@ $("#agregar-rol").on("click", function () {
       $(".togglerol").on("change", function () {
         let datosRoles = [];
         $("#contenedor-roles .form-check-input:checked").each(function () {
-          datosRoles.push({
-            codigo: $(this).attr("id").replace("rol", ""),
-            descripcion: $(this).data("descripcion"),
-          });
+          datosRoles.push($(this).attr("id").replace("rol", ""));
         });
         updateRoleBadges(datosRoles);
         rolesGuardados(datosRoles);
