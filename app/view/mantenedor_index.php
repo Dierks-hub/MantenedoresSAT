@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once("../assets/php/libs_common.php") ?>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script defer src="../assets/js/general.js"></script>
     <title>Document</title>
 </head>
 
@@ -49,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col table-responsive">
                                     <table class="table table-hover table-striped text-wrap w-100 tablita">
                                         <thead>
                                             <tr>
@@ -60,7 +61,7 @@
                                                 <th>Fecha Inicio</th>
                                                 <th>Fecha Termino</th>
                                                 <th>Roles</th>
-                                                <th></th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -79,7 +80,7 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=4',
+            url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=usuarios_registrados',
             dataType: 'JSON',
             method: 'GET',
             success: function(response) {
@@ -98,14 +99,12 @@
                         <td>${usuario.fechainicio}</td>
                         <td>${usuario.fechafin}</td>
                         <td>${usuario.descroles}</td>
-                        <td><i type= "button" class="bi bi-pencil"></i></td>
+                        <td><i type="button" class="bi bi-pen btn-primary modificar-usuario"></i></td>
                     </tr>
                 `;
                 });
                 // Object.entries(usuarios).forEach(([rut, usuario]) => {
                 //     const roles = usuario.descroles.length ? usuario.descroles.join(', ') : 'S/R';
-
-
                 // });
 
                 tablita.append(filas); // Añade todas las filas al DOM en una sola operación

@@ -109,22 +109,18 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="datos-academicos" role="tabpanel"
-                                    aria-labelledby="home-tab" tabindex="0">
-                                    <?php include_once("layouts/mantenedor_usuario.php"); ?>
-                                </div>
-                                <div class="tab-pane fade" id="datos-matriculas" role="tabpanel"
-                                    aria-labelledby="profile-tab" tabindex="0">
-                                    <?php include_once("layouts/mantenedor_rol.php"); ?>
-                                </div>
-                                <div class="tab-pane fade" id="datos-bienestar" role="tabpanel"
-                                    aria-labelledby="contact-tab" tabindex="0">
-                                </div>
-                            </div>
+                <div class="col-md-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="datos-academicos" role="tabpanel"
+                            aria-labelledby="home-tab" tabindex="0">
+                            <?php include_once("layouts/mantenedor_usuario.php"); ?>
+                        </div>
+                        <div class="tab-pane fade" id="datos-matriculas" role="tabpanel"
+                            aria-labelledby="profile-tab" tabindex="0">
+                            <?php include_once("layouts/mantenedor_rol.php"); ?>
+                        </div>
+                        <div class="tab-pane fade" id="datos-bienestar" role="tabpanel"
+                            aria-labelledby="contact-tab" tabindex="0">
                         </div>
                     </div>
                 </div>

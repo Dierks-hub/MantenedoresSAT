@@ -31,7 +31,7 @@ new TomSelect("#select-user", {
     direction: "asc",
   },
 });
-
+ShowLoader();
 // Cargar datos mediante AJAX
 $.ajax({
   url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=buscar_funcionarios",
@@ -54,6 +54,7 @@ $.ajax({
 });
 
 // Manejar el cambio de selección
+ShowLoader();
 $("#select-user").on("change", function () {
   let selectedValue = $(this).val();
   let usuarioSeleccionado = usuariosData.find(function (user) {
@@ -65,4 +66,5 @@ $("#select-user").on("change", function () {
     $("#apellidoPaterno").val(usuarioSeleccionado.apellidopaterno);
     $("#apellidoMaterno").val(usuarioSeleccionado.apellidomaterno);
   }
+  HideLoader();
 });

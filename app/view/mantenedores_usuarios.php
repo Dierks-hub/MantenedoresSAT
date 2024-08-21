@@ -70,8 +70,8 @@
 
                             </div>
                         </div>
-                        <div class="row mt-4 d-flex justify-content-between">
-                            <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                        <div class="row mt-4">
+                            <div class="col-12 col-lg-6 mt-3 mt-lg-0 mb-2">
                                 <button id="agregar-rol" class="btn btn-outline-secondary btn-sm me-2" type="button">
                                     <i class="fas fa-user-plus"></i> Asignar Rol
                                 </button> <button id="seleccionar-vistas" class="btn btn-outline-secondary btn-sm" type="button">
@@ -121,6 +121,8 @@
     <script src="../assets/js/agregar_rol.js"></script>
     <script src="../assets/js/manejar_vista.js"></script>
     <script src="../assets/js/select_user.js"></script>
+    <script defer src="../assets/js/general.js"></script>
+
     <script>
         let fechaInicio = $("#date-init").flatpickr({
             minDate: "today",
@@ -136,10 +138,13 @@
     </script>
     <script>
         $("#añadir-usuario").on('click', function() {
+            ShowLoader()
             let run = $("#select-user").val();
             let fechaini = $("#date-init").val();
             let fechafin = $("#date-finish").val();
             let nombent = "";
+
+
 
             let rolesSeleccionados = JSON.parse(sessionStorage.getItem("rolesSeleccionados")) || [];
             let codrol = rolesSeleccionados.length > 0 ? rolesSeleccionados.map(role => role.codigo).join(",") : undefined;
@@ -153,6 +158,7 @@
                     console.error("Error al modificar usuario:", error);
                 },
             });
+            HideLoader()
         });
     </script>
 

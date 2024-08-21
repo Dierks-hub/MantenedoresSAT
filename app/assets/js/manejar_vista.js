@@ -7,9 +7,13 @@ $("#seleccionar-vistas").on("click", function () {
   let rolesArray = rolesSeleccionados.map((role) => role.codigo).join(",");
 
   $.ajax({
-    url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=7&rol=${rolesArray}`,
-    method: "GET",
+    url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php`,
+    method: "POST",
     dataType: "JSON",
+    data: {
+      caso: 7,
+      rol: rolesArray,
+    },
     success: function (response) {
       console.log("Vistas asociadas a los roles seleccionados:", response);
     },
