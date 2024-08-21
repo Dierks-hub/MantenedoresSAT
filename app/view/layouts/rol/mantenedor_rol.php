@@ -22,7 +22,7 @@
                 </div>
                 <div class="row">
                     <div class="col table-responsive">
-                        <table class="table table-hover table-striped text-wrap" id="miTabla" >
+                        <table class="table table-hover table-striped text-wrap" id="Tabla-rol" >
                             <thead>
                                 <tr>
                                     <th class="col-10 ">Rol</th>

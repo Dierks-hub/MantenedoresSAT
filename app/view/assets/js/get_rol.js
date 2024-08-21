@@ -1,6 +1,6 @@
 $(document).ready(function () {
   ShowLoader();
-  new DataTable("#miTabla", {
+  new DataTable("#Tabla-rol", {
     ordering: false,
     searching: false,
     lengthChange: false,
@@ -41,10 +41,10 @@ $(document).ready(function () {
         },
       },
     ],
-    drawCallback: function () {
+    "drawCallback": function () {
       HideLoader();
     },
-    error: function () {
+    "error": function () {
       console.error("Error al obtener los datos");
       HideLoader();
     },

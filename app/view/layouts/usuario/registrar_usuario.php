@@ -147,16 +147,31 @@
 
 
             let rolesSeleccionados = JSON.parse(sessionStorage.getItem("rolesSeleccionados")) || [];
-            let codrol = rolesSeleccionados.length > 0 ? rolesSeleccionados.map(role => role.codigo).join(",") : undefined;
+            console.log(rolesSeleccionados);
+            let codrol = rolesSeleccionados.length > 0 ? rolesSeleccionados.map(role => role.codigo) : undefined;
+            let codrol2 = JSON.stringify(codrol);
+            console.log(run);
+            console.log(fechaini);
+            console.log(fechafin);
+            console.log(nombent);
+            console.log(codrol2);
+
             $.ajax({
-                url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=modificar_usuarios&run=${run}&nombent=${''}&codrol=${codrol}&fechaini=${fechaini}&fechafin=${fechafin}`,
+                url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php`,
                 method: "POST",
+                data: {
+                    caso: 'modificar_usuarios',
+                    run: run,
+                    // nombent: '',
+                    fechaini: fechaini,
+                    fechafin: fechafin,
+                    codroles: codrol2,
+
+                },
                 success: function(response) {
-                    console.log("Usuario modificado exitosamente:", response);
+                    console.log("Usuario agregado exitosamente:", response);
                 },
-                error: function(error) {
-                    console.error("Error al modificar usuario:", error);
-                },
+
             });
             HideLoader()
         });
