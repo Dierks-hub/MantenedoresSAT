@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de usuarios</title>
-    <?php include_once("../assets/php/libs_common.php") ?>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <?php include_once("../../assets/php/libs_common.php") ?>
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body>
@@ -116,12 +116,12 @@
             </div>
         </div>
     </div>
-    <script src="../assets/js/datatable.js"></script>
-    <script src="../assets/js/cargar_usuario.js"></script>
-    <script src="../assets/js/agregar_rol.js"></script>
-    <script src="../assets/js/manejar_vista.js"></script>
-    <script src="../assets/js/select_user.js"></script>
-    <script defer src="../assets/js/general.js"></script>
+    <script src="../../assets/js/datatable.js"></script>
+    <script src="../../assets/js/cargar_usuario.js"></script>
+    <script src="../../assets/js/agregar_rol.js"></script>
+    <script src="../../assets/js/manejar_vista.js"></script>
+    <script src="../../assets/js/select_user.js"></script>
+    <script defer src="../../assets/js/general.js"></script>
 
     <script>
         let fechaInicio = $("#date-init").flatpickr({
