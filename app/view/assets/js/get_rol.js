@@ -1,21 +1,25 @@
 $(document).ready(function () {
     ShowLoader();
-    $('#miTabla').DataTable({
-        "ordering":false,
-        "searching":false,
-        "lengthChange": false,
-        "language": {
+    new DataTable('#miTabla',{
+        ordering:false,
+        searching:false,
+        lengthChange: false,
+        language: {
             url: "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
         },
-        "ajax": {
-            "url": "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=ver_subconcepto&concepto=0012",
-            "type": "GET",
+        ajax: {
+            "url": "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php",
+            "type": "POST",
+            "data":{
+                caso:"ver_subconcepto",
+                concepto:"0012"
+            },
             "dataType": "JSON",
             "dataSrc": function (response) {
                 return response.datosTabla;
             }
         },
-        "columns": [
+        columns: [
             { "data": "descripcion_concepto" }, 
             { 
                 "data": null,
@@ -35,10 +39,10 @@ $(document).ready(function () {
                 }
             }
         ],
-        "drawCallback": function () {
+        drawCallback: function () {
             HideLoader();
         },
-        "error": function () {
+        error: function () {
             console.error("Error al obtener los datos");
             HideLoader();
         }
@@ -52,7 +56,11 @@ $(document).ready(function () {
         ShowLoader();
         return $.ajax({
           url: "https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=ver_subconcepto&concepto=0011",
-          type: "GET",
+          type: "POST",
+          data:{
+            caso:"ver_subconcepto",
+            concepto:"0011"
+        },
           success: function (response) {
             allAvailableViews = response.datosTabla;
             console.log(
@@ -75,9 +83,13 @@ $(document).ready(function () {
             ShowLoader();
             showLoadingState();
           $.ajax({
-            url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=vistasxrol&rol=${roleId}`, // API route for fetching views assigned to a role
+            url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php`, // API route for fetching views assigned to a role
             dataType: "JSON",
-            type: "GET",
+            type: "POST",
+            data:{
+                caso:"vistasxrol",
+                rol: roleId
+            },
             success: function (response) {
                 console.log("Respuesta del servidor para vistas del rol:", response);
     
