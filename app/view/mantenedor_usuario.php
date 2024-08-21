@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-auto">
+                <div class="col-12 col-md-12 col-lg-12">
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="datos-academicos" role="tabpanel"
                             aria-labelledby="home-tab" tabindex="0">
@@ -117,15 +117,22 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
+                                            <a href="layouts/usuario/registrar_usuario.php">
+                                                <button class="btn btn-primary"><i class="bi bi-plus me-1"></i>Registrar usuario</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-12 col-lg-12">
                                             <table
                                                 id="tabla-usuario" class="table table-hover table-striped text-wrap w-100">
                                                 <thead>
                                                     <tr>
-                                                        <th>Rut</th>
-                                                        <th>Usuario</th>
-                                                        <th>Fecha Inicio</th>
-                                                        <th>Fecha Termino</th>
-                                                        <th>Roles</th>
+                                                        <th class="text-start">Rut</th>
+                                                        <th class="text-start">Usuario</th>
+                                                        <th class="text-start">Fecha Inicio</th>
+                                                        <th class="text-start">Fecha Termino</th>
+                                                        <th class="text-start">Roles</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody></tbody>
@@ -155,8 +162,8 @@
 <script>
     new DataTable("#tabla-usuario", {
         layout: {
-            topStart: ['pageLength', "buttons"],
-            topEnd: 'search'
+            topStart: ['pageLength'],
+            topEnd: ['buttons', 'search']
         },
         buttons: [{
                 extend: "copy",
@@ -202,6 +209,7 @@
             {
                 data: 'descroles'
             },
+
         ],
         searching: true,
         ordering: true,
