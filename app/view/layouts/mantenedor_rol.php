@@ -36,10 +36,10 @@
     </div>
 
     <div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered  modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-lg loader">
             <div class="modal-content">
                 <div class="modal-header bg-unap-green color-white">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar permisos de vistas</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:white">Editar permisos de vistas</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -47,21 +47,21 @@
                     <div class="row">
                         <div class="col-md-5">
                             <h5>Vistas disponibles</h5>
-                            <ul id="selectedViews" class="list-group lista-vista">
+                            <ul id="availableViews" class="list-group lista-vista">
 
                             </ul>
                         </div>
                         <div class="col-md-2 d-flex align-items-center justify-content-center">
                             <div class="btn-group-vertical">
                                 <button id="moveToSelected" class="btn btn-primary"><i
-                                        class="bi bi-arrow-bar-left"></i></button>
-                                <button id="moveToAvailable" class="btn btn-secondary"><i
                                         class="bi bi-arrow-bar-right"></i></button>
+                                <button id="moveToAvailable" class="btn btn-secondary"><i
+                                        class="bi bi-arrow-bar-left"></i></button>
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <h5>Vistas vistas asignadas</h5>
-                            <ul id="availableViews" class="list-group lista-vista">
+                            <h5>Vistas asignadas</h5>
+                            <ul id="selectedViews" class="list-group lista-vista">
 
                             </ul>
                         </div>

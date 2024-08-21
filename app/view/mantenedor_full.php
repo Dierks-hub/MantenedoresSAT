@@ -12,7 +12,7 @@
 <body>
     <!-- Offcanvas -->
     <?php include_once("layouts/components/sidebar.php"); ?>
-    <!-- Header -->
+    <!-- Header --> 
     <header>
         <nav class="navbar navbar-expand-lg nav-main">
             <div class="d-flex justify-content-between align-items-center w-100">
@@ -61,14 +61,14 @@
     <!-- Contenido main -->
     <div class="container-fluid">
         <main>
-            <div class="row my-4">
+            <div class="row my-3">
                 <div id="carouselExample" class="carousel carousel-dark slide" data-bs-interval="false">
                     <div class="carousel-inner">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <div class="carousel-item active">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-md-2 mb-2">
-                                        <div class="card shadow-sm hover-effect">
+                                <div class="row g-3 justify-content-center">
+                                    <div class="col-auto d-flex justify-content-center">
+                                        <div class="card shadow-sm hover-effect" style="width:150px; height:75px;">
                                             <div class="card-body d-flex align-items-center stylecard">
                                                 <div class="me-3">
                                                     <i class="bi bi-book" style="font-size: 1.5rem;"></i>
@@ -85,8 +85,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2 mb-2">
-                                        <div class="card shadow-sm hover-effect">
+                                    <div class="col-auto d-flex justify-content-center">
+                                        <div class="card shadow-sm hover-effect" style="width:150px; height:75px;">
                                             <div class="card-body d-flex align-items-center stylecard">
                                                 <div class="me-3">
                                                     <i class="bi-pencil" style="font-size: 1.5rem;"></i>
@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-auto">
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div class="tab-content" id="myTabContent">
@@ -129,11 +129,12 @@
                     </div>
                 </div>
             </div>
-            <!-- Sección de Navtools y tabla de datos-->
         </main>
         <!-- Footer contenido -->
         <footer></footer>
+
     </div>
+    <script src="../assets/js/general.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -146,6 +147,4 @@
         }));
     </script>
 </body>
-
-
 </html>

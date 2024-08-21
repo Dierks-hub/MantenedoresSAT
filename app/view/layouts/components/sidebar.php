@@ -1,5 +1,5 @@
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-    <div class="offcanvas-header shadow-sm bg-primary">
+    <div class="offcanvas-header shadow-sm bg-primary" style="height: 75px;">
         <img src="assets/images/logo_unap_2022-07_blanco.png" alt="" style="width: 200px;">
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>

@@ -14,7 +14,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-5 mb-2 h-25%">
                 <div class="card shadow">
-                    <div class="card-header bg-primary">
+                    <div class="card-header bg-unap-green">
                         <h5 class="mt-2 text-light">Registrar Usuario</h5>
                     </div>
                     <div class="card-body">

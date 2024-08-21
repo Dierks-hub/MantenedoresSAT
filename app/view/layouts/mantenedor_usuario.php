@@ -9,9 +9,9 @@
                 </div>
                 <!-- Aca se cargara la tabla con los datos del usuario -->
                 <div class="card" style="border:none;">
-                    <div class="card-header my-3" style="background-color:#ffffff">
+                    <div class="card-header " style="background-color:#ffffff">
                         <div class="row">
-                            <div class="col mb-3 d-flex justify-content-center">
+                             <div class="col mb-3 d-flex justify-content-start">
                                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group me-2" role="group" aria-label="First group">
                                         <button type="button" class="btn btn-primary">1</button>
@@ -28,7 +28,7 @@
                                         <button type="button" class="btn btn-info">8</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                             <div class="col mb-3 d-flex justify-content-end">
                                 <button type="button" class="btn btn-primary mx-2" onclick=" window.location.href ='mantenedores_usuarios.php'">Agregar usuario</button>
                             </div>
@@ -36,9 +36,9 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col">
-                                <table class="table table-responsive text-wrap w-100 tablitau">
-                                    <thead>
+                            <div class="col table-responsive">
+                                <table class="table w-100 tablitau">
+                                    <thead style="white-space: nowrap;">
                                         <tr>
                                             <th>Usuario</th>
                                             <th>Rut</th>
