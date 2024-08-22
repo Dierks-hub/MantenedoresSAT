@@ -58,82 +58,35 @@
     </header>
     <main>
         <div class="container-fluid">
-            <div class="row my-3">
-                <div id="carouselExample" class="carousel carousel-dark slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                            <div class="carousel-item active">
-                                <div class="row g-3 justify-content-center">
-                                    <div class="col-auto d-flex justify-content-center">
-                                        <div class="card shadow-sm hover-effect" style="width:150px; height:75px;">
-                                            <div class="card-body d-flex align-items-center stylecard">
-                                                <div class="me-3">
-                                                    <i class="bi bi-book" style="font-size: 1.5rem;"></i>
-                                                </div>
-                                                <div>
-                                                    <h6 class="card-title mb-1">Registrar usuarios</h6>
-                                                    <p class="mb-0 " style="font-size: 0.875rem;"></p>
-                                                </div>
-                                                <a href="#datos-academicos" id="llamar-datos-academicos"
-                                                    class="stretched-link active" id="datos-academicos-tab"
-                                                    data-bs-toggle="tab" data-bs-target="#datos-academicos"
-                                                    type="button" role="tab" aria-controls="academicos-tab-pane"
-                                                    aria-selected="true"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto d-flex justify-content-center">
-                                        <div class="card shadow-sm hover-effect" style="width:150px; height:75px;">
-                                            <div class="card-body d-flex align-items-center stylecard">
-                                                <div class="me-3">
-                                                    <i class="bi-pencil" style="font-size: 1.5rem;"></i>
-                                                </div>
-                                                <div>
-                                                    <h6 class="card-title mb-1">Gestionar roles</h6>
-                                                    <p class="mb-0 " style="font-size: 0.875rem;"></p>
-                                                </div>
-                                                <a href="#datos-matriculas" id="llamar-datos-matriculas"
-                                                    class="stretched-link" data-bs-toggle="tab"
-                                                    data-bs-target="#datos-matriculas" type="button" role="tab"
-                                                    aria-controls="matriculas-tab-pane" aria-selected="false"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-11">
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="datos-academicos" role="tabpanel"
                             aria-labelledby="home-tab" tabindex="0">
-                            <div class="card">
+                            <div class="card shadow">
                                 <div class="card-header ">
                                     <h6 class="text-wrap mt-2">Tabla Usuarios</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <a href="layouts/usuario/registrar_usuario.php">
-                                                <button class="btn btn-primary"><i class="bi bi-plus me-1"></i>Registrar usuario</button>
-                                            </a>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                Launch demo modal
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-md-12 col-lg-12">
                                             <table
-                                                id="tabla-usuario" class="table table-hover table-striped text-wrap w-100">
+                                                id="tabla-usuario" class="table text-wrap w-100">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-start">Rut</th>
-                                                        <th class="text-start">Usuario</th>
-                                                        <th class="text-start">Fecha Inicio</th>
-                                                        <th class="text-start">Fecha Termino</th>
-                                                        <th class="text-start">Roles</th>
-                                                        <th class="text-start">Acciones</th>
+                                                        <th class="col-auto text-start">Rut</th>
+                                                        <th class="col-auto text-start">Usuario</th>
+                                                        <th class="col-auto text-start">Fecha Inicio</th>
+                                                        <th class="col-auto text-start">Fecha Termino</th>
+                                                        <th class="col-auto text-start">Roles</th>
+                                                        <th class="col-auto text-start">Acciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody></tbody>
@@ -143,103 +96,99 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="datos-matriculas" role="tabpanel"
-                            aria-labelledby="profile-tab" tabindex="0">
-                            <?php include_once("layouts/rol/mantenedor_rol.php"); ?>
-                        </div>
-                        <div class="tab-pane fade" id="datos-bienestar" role="tabpanel"
-                            aria-labelledby="contact-tab" tabindex="0">
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Footer contenido -->
             <footer></footer>
         </div>
     </main>
-</body>
-<script>
-    new DataTable("#tabla-usuario", {
-        layout: {
-            topStart: ['pageLength'],
-            topEnd: ['buttons', 'search'],
-        },
+    <script>
+        new DataTable("#tabla-usuario", {
+            layout: {
+                topStart: ['pageLength'],
+                topEnd: ['buttons', 'search'],
+            },
+            ajax: {
+                url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=usuarios_registrados',
+                method: 'POST',
+                dataSrc: 'datosTabla',
+            },
+            buttons: [{
+                extend: 'copy',
+                text: '<i class="bi bi-copy"></i>',
+                className: 'btn-sm'
 
-        buttons: [{
-            extend: 'copy',
-            text: '<i class="bi bi-copy"></i>',
-            className: 'btn-sm'
+            }, {
+                extend: 'pdf',
+                text: '<i class="bi bi-file-earmark-pdf"></i>',
+                className: 'btn-sm'
+            }, {
+                extend: 'excel',
+                text: '<i class="bi bi-file-earmark-excel"></i>',
+                className: 'btn-sm'
 
-        }, {
-            extend: 'pdf',
-            text: '<i class="bi bi-file-earmark-pdf"></i>',
-            className: 'btn-sm'
-        }, {
-            extend: 'excel',
-            text: '<i class="bi bi-file-earmark-excel"></i>',
-            className: 'btn-sm'
-
-        }],
-        ajax: {
-            url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=usuarios_registrados',
-            method: 'POST',
-            dataSrc: 'datosTabla',
-        },
-        columns: [{
-                data: 'run'
-            },
-            {
-                data: 'nombres'
-            },
-            {
-                data: 'fechainicio'
-            },
-            {
-                data: 'fechafin'
-            },
-            {
-                data: 'descroles'
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return `<button type="button" class="btn btn-outline-secondary btn-sm botonEditar" data-run="${row.run}">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>`;
+            }],
+            columns: [{
+                    data: 'run',
+                    className: 'text-start'
                 },
-            }
-        ],
-        searching: true,
-        ordering: true,
-        language: {
-            url: "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
-        },
-        paging: true,
-        scrollCollapse: false,
-        scrollY: true,
-        responsive: true
-    });
-
-    $(document).on('click', '.botonEditar', function() {
-        let run = $(this).data('run');
-
-        $.ajax({
-            url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php`,
-            method: 'POST',
-            data: {
-                caso: 'rolxusuario',
-                run: run,
+                {
+                    data: 'nombres'
+                },
+                {
+                    data: 'fechainicio'
+                },
+                {
+                    data: 'fechafin'
+                },
+                {
+                    data: 'descroles'
+                },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return `<button type="button" class="btn btn-outline-secondary rounded-4 btn-sm btnnEditar" data-run="${row.run}">
+                    Editar<i class="bi bi-pencil-square px-1"></i>
+                </button>
+                <button type="button" class="btn btn-outline-secondary rounded-4 btn-sm btnVistas">
+                    Vistas<i class="bi bi-eye px-1"></i>
+                </button`;
+                    }
+                },
+            ],
+            searching: true,
+            ordering: true,
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
             },
-            success: function(response) {
-                let datos = response.datosTabla;
-                console.log(datos)
-            },
-            error: function(response) {
-                console.log(error, 'response');
-            }
+            paging: true,
+            scrollCollapse: false,
+            scrollY: true,
+            responsive: true,
+
+
         });
-    });
-</script>
 
+        $(document).on('click', '.btnEditar', function() {
+            let run = $(this).data('run');
+
+            $.ajax({
+                url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php`,
+                method: 'POST',
+                data: {
+                    caso: 'rolxusuario',
+                    run: run,
+                },
+                success: function(response) {
+                    let datos = response.datosTabla;
+                    console.log(datos)
+                },
+                error: function(response) {
+                    console.log(error, 'response');
+                }
+            });
+        });
+    </script>
+</body>
 
 </html>
