@@ -111,8 +111,8 @@
                         <div class="tab-pane fade show active" id="datos-academicos" role="tabpanel"
                             aria-labelledby="home-tab" tabindex="0">
                             <div class="card">
-                                <div class="card-header bg-primary">
-                                    <h6 class="text-wrap text-light mt-2">Tabla Usuarios</h6>
+                                <div class="card-header ">
+                                    <h6 class="text-wrap mt-2">Tabla Usuarios</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -164,15 +164,21 @@
             topStart: ['pageLength'],
             topEnd: ['buttons', 'search'],
         },
+
         buttons: [{
             extend: 'copy',
             text: '<i class="bi bi-copy"></i>',
+            className: 'btn-sm'
+
         }, {
             extend: 'pdf',
             text: '<i class="bi bi-file-earmark-pdf"></i>',
+            className: 'btn-sm'
         }, {
             extend: 'excel',
             text: '<i class="bi bi-file-earmark-excel"></i>',
+            className: 'btn-sm'
+
         }],
         ajax: {
             url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=usuarios_registrados',
@@ -197,7 +203,7 @@
             {
                 data: null,
                 render: function(data, type, row) {
-                    return `<button type="button" class="btn btn-outline-secondary botonEditar" data-run="${row.run}">
+                    return `<button type="button" class="btn btn-outline-secondary btn-sm botonEditar" data-run="${row.run}">
                             <i class="bi bi-pencil-square"></i>
                         </button>`;
                 },
