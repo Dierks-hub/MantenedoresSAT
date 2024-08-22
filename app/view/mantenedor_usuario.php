@@ -58,53 +58,6 @@
     </header>
     <main>
         <div class="container-fluid">
-            <div class="row my-3">
-                <div id="carouselExample" class="carousel carousel-dark slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                            <div class="carousel-item active">
-                                <div class="row g-3 justify-content-center">
-                                    <div class="col-auto d-flex justify-content-center">
-                                        <div class="card shadow-sm hover-effect" style="width:150px; height:75px;">
-                                            <div class="card-body d-flex align-items-center stylecard">
-                                                <div class="me-3">
-                                                    <i class="bi bi-book" style="font-size: 1.5rem;"></i>
-                                                </div>
-                                                <div>
-                                                    <h6 class="card-title mb-1">Registrar usuarios</h6>
-                                                    <p class="mb-0 " style="font-size: 0.875rem;"></p>
-                                                </div>
-                                                <a href="#datos-academicos" id="llamar-datos-academicos"
-                                                    class="stretched-link active" id="datos-academicos-tab"
-                                                    data-bs-toggle="tab" data-bs-target="#datos-academicos"
-                                                    type="button" role="tab" aria-controls="academicos-tab-pane"
-                                                    aria-selected="true"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto d-flex justify-content-center">
-                                        <div class="card shadow-sm hover-effect" style="width:150px; height:75px;">
-                                            <div class="card-body d-flex align-items-center stylecard">
-                                                <div class="me-3">
-                                                    <i class="bi-pencil" style="font-size: 1.5rem;"></i>
-                                                </div>
-                                                <div>
-                                                    <h6 class="card-title mb-1">Gestionar roles</h6>
-                                                    <p class="mb-0 " style="font-size: 0.875rem;"></p>
-                                                </div>
-                                                <a href="#datos-matriculas" id="llamar-datos-matriculas"
-                                                    class="stretched-link" data-bs-toggle="tab"
-                                                    data-bs-target="#datos-matriculas" type="button" role="tab"
-                                                    aria-controls="matriculas-tab-pane" aria-selected="false"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-11">
                     <div class="tab-content" id="myTabContent">
@@ -115,13 +68,6 @@
                                     <h6 class="text-wrap text-light mt-2">Tabla Usuarios</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="layouts/usuario/registrar_usuario.php">
-                                                <button class="btn btn-primary"><i class="bi bi-plus me-1"></i>Registrar usuario</button>
-                                            </a>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-12 col-md-12 col-lg-12">
                                             <table
@@ -163,7 +109,29 @@
 <script>
     new DataTable("#tabla-usuario", {
         layout: {
-            topStart: ['pageLength'],
+            topStart: [
+                'pageLength',
+                {
+                    buttons: [
+                        {
+                            className: '',
+                            text: '<i class="bi bi-plus me-1">Registrar usuario</i>',
+                            action: function (e, dt, node, config) {
+                                window.location.href = 'layouts/rol/mantenedor_rol.php';
+                            }
+                        },
+                        {
+                            className: '',
+                            text: '<i class="bi bi-plus me-1">Gestionar roles</i>',
+                            action: function (e, dt, node, config) {
+                                window.location.href = 'layouts/usuario/registrar_usuario.php';
+                            }
+                        }
+
+
+                    ]
+                }
+            ],
             topEnd: ['buttons', 'search']
         },
         buttons: [{
@@ -211,10 +179,13 @@
                 data: 'descroles'
             },
             {
-                "render": function() {
-                    return '<button type="button" id="ButtonEditar" class="editar edit-modal btn btn-outline-secondary botonEditar><i class="fa-thin fa-pen-to-square"></i></button>';
-                }
+            data: null,
+            render: function (data, type, row) {
+                return `<button type="button" class="btn btn-outline-secondary botonEditar" data-run="${row.run}">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>`;
             },
+        },
 
         ],
         searching: true,

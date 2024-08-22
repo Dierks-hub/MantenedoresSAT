@@ -36,15 +36,18 @@ $(document).ready(function () {
                                 <button class="btn btn-primary btn-sm d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#ModalEdit" data-role-id="${row.codigo_concepto}">
                                     <i class="bi bi-pen"></i>
                                 </button>
+                                <button class="btn btn-primary btn-sm d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#Modaladd" data-role-id="${row.codigo_concepto}">
+                                    <i class="bi bi-pen"></i>
+                                </button>
                             </div>
                         `;
         },
       },
     ],
-    "drawCallback": function () {
+    drawCallback: function () {
       HideLoader();
     },
-    "error": function () {
+    error: function () {
       console.error("Error al obtener los datos");
       HideLoader();
     },
@@ -107,7 +110,6 @@ $(document).ready(function () {
         // Cachear las vistas del rol
         cachedRoleViews[roleId] = roleViews;
         renderRoleViews(roleViews);
-        HideLoader();
       },
       error: function () {
         console.error("Error al obtener las vistas asignadas al rol");
@@ -117,6 +119,68 @@ $(document).ready(function () {
     });
     HideLoader();
   }
+
+  function loadRoleViews(roleId) {
+    if (cachedRoleViews[roleId]) {
+        renderRoleViews(cachedRoleViews[roleId]);
+    } else {
+        showLoadingState();
+        ShowLoader();
+        $.ajax({
+          url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php`, // API route for fetching views assigned to a role
+          dataType: "JSON",
+          type: "POST",
+          data: {
+            caso: "vistasxrol",
+            rol: roleId,
+          },
+            success: function (response) {
+                console.log("Respuesta del servidor para vistas del rol:", response);
+
+                // Extraer el array de vistas asignadas al rol desde el objeto response
+                let roleViews = response.datosTabla[roleId];
+                if (!roleViews) {
+                    console.error(`No se encontraron vistas para el rol con ID ${roleId}`);
+                    showErrorState("No se encontraron vistas para este rol.");
+                    HideLoader();
+                    return;
+                }
+
+                // Validar que roleViews tenga el formato esperado
+                if (Array.isArray(roleViews)) {
+                    // Mapear para obtener los IDs correctos
+                    roleViews = roleViews.map(v => ({
+                        codigo_concepto: v.codvista, // Usamos codvista en lugar de codigo_concepto
+                        descripcion_concepto: v.titulo_vista // Usamos titulo_vista en lugar de descripcion_concepto
+                    }));
+                    
+                    // Verificar si no hay vistas asignadas
+                    if (roleViews.length === 0) {
+                        showErrorState("Este rol no tiene vistas asignadas.");
+                        HideLoader();
+                        return;
+                    }
+
+                } else {
+                    console.error("La estructura de roleViews no es la esperada:", roleViews);
+                    showErrorState("Error en la estructura de datos del rol.");
+                    HideLoader();
+                    return;
+                }
+
+                // Cachear las vistas del rol
+                cachedRoleViews[roleId] = roleViews;
+                renderRoleViews(roleViews);
+                HideLoader();
+            },
+            error: function () {
+                console.error("Error al obtener las vistas asignadas al rol");
+                showErrorState("Error al obtener las vistas asignadas al rol.");
+                HideLoader();
+            }
+        });
+    }
+}
 
   function renderRoleViews(roleViews) {
     const availableViews = $("#availableViews");
@@ -149,6 +213,9 @@ $(document).ready(function () {
       }
     });
     addItemClickHandlers();
+
+    console.log(roleViews);
+
   }
 
   // Agregar eventos de clic a los ítems de la lista
@@ -244,6 +311,5 @@ $(document).ready(function () {
   });
 
   // Cargar todas las vistas disponibles inicialmente
-  fetchAllViews().then(() => {
-  });
+  fetchAllViews().then(() => {});
 });

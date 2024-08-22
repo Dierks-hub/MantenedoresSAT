@@ -1,101 +1,148 @@
-<div class="row" >
-    <div class="col d-flex justify-content-center">
-        <div class="card">
-            <div class="card-header bg-primary">
-                <h6 class="text-wrap text-light mt-2">Tabla roles</h6>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <form id="roleForm">
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="Ingrese el nombre del rol">
-                                </div>
-                                <div class="col d-flex justify-content-end ">
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="agregarol()">Guardar</button>
-                                </div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de usuarios</title>
+    <?php include_once("../../assets/php/libs_common.php") ?>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="container-fluid mt-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-5 mb-2">
+                <div class="card shadow">
+                    <div class="card-header bg-primary">
+                        <h6 class="text-wrap text-light mt-2">Tabla roles</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <table class="table table-hover table-responsive table-striped text-wrap"
+                                    id="Tabla-rol">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-10 ">Rol</th>
+                                            <th class="col-3">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col table-responsive">
-                        <table class="table table-hover table-striped text-wrap" id="Tabla-rol" >
-                            <thead>
-                                <tr>
-                                    <th class="col-10 ">Rol</th>
-                                    <th class="col-3">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+
+                <div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered  modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-unap-green color-white">
+                                <h5 class="modal-title" id="exampleModalLabel" style="color:white;">Editar permisos de
+                                    vistas
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Vistas Asignadas</h5>
+                                        <ul id="selectedViews" class="list-group lista-vista">
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div class="btn-group-vertical">
+                                            <button id="moveToSelected" class="btn btn-primary"><i
+                                                    class="bi bi-arrow-bar-left"></i></button>
+                                            <button id="moveToAvailable" class="btn btn-secondary"><i
+                                                    class="bi bi-arrow-bar-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h5>Vistas disponibles</h5>
+                                        <ul id="availableViews" class="list-group lista-vista">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="Modaladd" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered  modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-unap-green color-white">
+                                <h5 class="modal-title" id="exampleModalLabel" style="color:white;">Agregar roles
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Vistas disponibles</h5>
+                                        <ul id="availableViewsModal" class="list-group lista-vista">
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-center justify-content-center">
+                                        <div class="btn-group-vertical">
+                                            <button id="moveToSelectedModal" class="btn btn-primary"><i
+                                                    class="bi bi-arrow-bar-left"></i></button>
+                                            <button id="moveToAvailableModal" class="btn btn-secondary"><i
+                                                    class="bi bi-arrow-bar-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h5>Vistas asignadas</h5>
+                                        <ul id="selectedViewsModal" class="list-group lista-vista">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" onclick="agregarol()">Agregar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered  modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-unap-green color-white">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color:white;">Editar permisos de vistas</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h5>Vistas disponibles</h5>
-                            <ul id="selectedViews" class="list-group lista-vista">
-
-                            </ul>
-                        </div>
-                        <div class="col-md-2 d-flex align-items-center justify-content-center">
-                            <div class="btn-group-vertical">
-                                <button id="moveToSelected" class="btn btn-primary"><i
-                                        class="bi bi-arrow-bar-left"></i></button>
-                                <button id="moveToAvailable" class="btn btn-secondary"><i
-                                        class="bi bi-arrow-bar-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <h5>Vistas asignadas</h5>
-                            <ul id="availableViews" class="list-group lista-vista">
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar cambios</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="../assets/js/get_rol.js"></script>
-<script>
-    function agregarol() {
-        Swal.fire({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "btn btn-danger"
-            },
-            title: "Estas seguro de agregar este rol?",
-            icon: "question",
-            showDenyButton: true,
-            confirmButtonText: "Agregar",
-            denyButtonText: `Cancelar`,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire("Rol agregado!", "", "success");
+        <script src="../../assets/js/get_rol.js"></script>
+        <script defer src="../../assets/js/general.js"></script>
+        <script>
+            function agregarol() {
+                Swal.fire({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger"
+                    },
+                    title: "Estas seguro de agregar este rol?",
+                    icon: "question",
+                    showDenyButton: true,
+                    confirmButtonText: "Agregar",
+                    denyButtonText: `Cancelar`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire("Rol agregado!", "", "success");
+                    }
+                });
             }
-        });
-    }
-</script>
+        </script>
+</body>
+
+</html>

@@ -152,10 +152,6 @@ body{
     background: #555;
 }
  
-#gestion-vistas-card{
-    max-width: 500px;
-    margin: auto;
-}
 .background-loader{
 	background: rgb(238, 238, 238);
 	background: -moz-linear-gradient(left,  rgba(238, 238, 238,1) 0%, rgba(208, 208, 208,1) 51%, rgba(238, 238, 238,1) 100%);
