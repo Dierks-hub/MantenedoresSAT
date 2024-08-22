@@ -133,7 +133,7 @@
                                                         <th class="text-start">Fecha Inicio</th>
                                                         <th class="text-start">Fecha Termino</th>
                                                         <th class="text-start">Roles</th>
-                                                        <th class="text-start"></th>
+                                                        <th class="text-start">Acciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody></tbody>
@@ -158,42 +158,26 @@
         </div>
     </main>
 </body>
-<script defer src="assets/js//datatable.js"></script>
-<script defer src="assets/js//get_rol.js"></script>
 <script>
     new DataTable("#tabla-usuario", {
         layout: {
             topStart: ['pageLength'],
-            topEnd: ['buttons', 'search']
+            topEnd: ['buttons', 'search'],
         },
         buttons: [{
-                extend: "copy",
-                text: '<i class="bi bi-clipboard"></i>',
-            },
-            {
-                extend: 'pdf',
-                text: '<i class="bi bi-file-earmark-pdf"></i>',
-                exportOptions: {
-                    modifier: {
-                        page: 'current'
-                    }
-                }
-            },
-            {
-                extend: 'excel',
-                text: '<i class="bi bi-file-earmark-excel"></i>',
-                exportOptions: {
-                    modifier: {
-                        page: 'current'
-                    }
-                },
-            },
-        ],
+            extend: 'copy',
+            text: '<i class="bi bi-copy"></i>',
+        }, {
+            extend: 'pdf',
+            text: '<i class="bi bi-file-earmark-pdf"></i>',
+        }, {
+            extend: 'excel',
+            text: '<i class="bi bi-file-earmark-excel"></i>',
+        }],
         ajax: {
             url: 'https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php?caso=usuarios_registrados',
             method: 'POST',
             dataSrc: 'datosTabla',
-
         },
         columns: [{
                 data: 'run'
@@ -211,11 +195,13 @@
                 data: 'descroles'
             },
             {
-                "render": function() {
-                    return '<button type="button" id="ButtonEditar" class="editar edit-modal btn btn-outline-secondary botonEditar><i class="fa-thin fa-pen-to-square"></i></button>';
-                }
-            },
-
+                data: null,
+                render: function(data, type, row) {
+                    return `<button type="button" class="btn btn-outline-secondary botonEditar" data-run="${row.run}">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>`;
+                },
+            }
         ],
         searching: true,
         ordering: true,
@@ -226,6 +212,26 @@
         scrollCollapse: false,
         scrollY: true,
         responsive: true
+    });
+
+    $(document).on('click', '.botonEditar', function() {
+        let run = $(this).data('run');
+
+        $.ajax({
+            url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php`,
+            method: 'POST',
+            data: {
+                caso: 'rolxusuario',
+                run: run,
+            },
+            success: function(response) {
+                let datos = response.datosTabla;
+                console.log(datos)
+            },
+            error: function(response) {
+                console.log(error, 'response');
+            }
+        });
     });
 </script>
 

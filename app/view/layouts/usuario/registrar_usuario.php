@@ -150,12 +150,6 @@
             console.log(rolesSeleccionados);
             let codrol = rolesSeleccionados.length > 0 ? rolesSeleccionados.map(role => role.codigo) : undefined;
             let codrol2 = JSON.stringify(codrol);
-            console.log(run);
-            console.log(fechaini);
-            console.log(fechafin);
-            console.log(nombent);
-            console.log(codrol2);
-
             $.ajax({
                 url: `https://portalonlinedev.unap.cl/MantenedoresSat/presentacion/index.php`,
                 method: "POST",

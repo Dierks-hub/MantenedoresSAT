@@ -1,0 +1,3 @@
+$(".botonEditar").on("click", function () {
+    
+});
